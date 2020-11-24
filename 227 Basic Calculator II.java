@@ -6,14 +6,19 @@ public class LeetCode227 {
         Stack<Character> opStack = new Stack<>();
         int i = 0;
         int j = s.length();
-        StringBuffer sb = new StringBuffer();
+        char[] sChar = s.toCharArray();
+        int number =0;
+        //StringBuffer sb = new StringBuffer();
         while (i < j) {
-            char ch = s.charAt(i);
+            char ch = sChar[i];
             if (ch >= '0' && ch <= '9') {
-                sb.append(ch);
+                number = number*10 + ch-'0';
+                //sb.append(ch);
             } else if(ch == '+' || ch == '-' ||ch == '*' || ch == '/'){
-                numStack.push(Integer.parseInt(sb.toString()));
-                sb = new StringBuffer();
+                //numStack.push(Integer.parseInt(sb.toString()));
+                numStack.push(number);
+                number =0;
+                //sb = new StringBuffer();
                 if (ch == '+' || ch == '-') {
                     while (!opStack.isEmpty()) {
                         numStack.push(cal(numStack.pop(), numStack.pop(), opStack.pop()));
@@ -30,7 +35,7 @@ public class LeetCode227 {
             }
 
             if (i == j - 1) {
-                numStack.push(Integer.parseInt(sb.toString()));
+                numStack.push(number);
             }
             i++;
         }
