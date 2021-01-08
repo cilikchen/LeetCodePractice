@@ -32,7 +32,7 @@ public class LeetCode1297 {
         for (int right = 0; right < s.length(); right++) {
             contains.put(s.charAt(right), contains.getOrDefault(s.charAt(right), 0) + 1);
 
-            while ((contains.size() > maxLetters || (right - left + 1) > minSize) && left <= right) {
+            while ((contains.size() > maxLetters || (right - left + 1) > minSize)) {
                 contains.put(s.charAt(left), contains.getOrDefault(s.charAt(left), 0) - 1);
                 if (contains.get(s.charAt(left)) == 0) {
                     contains.remove(s.charAt(left));
